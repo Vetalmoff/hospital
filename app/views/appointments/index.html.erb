@@ -2,6 +2,12 @@
 
 <h1>Appointments</h1>
 
+<% if flash[:alert] %>
+  <aside class="notice">
+    <%= flash[:alert] %>
+  </aside>
+<% end %>
+
 <table>
   <thead>
     <tr>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # root 'store#index', as: 'store_index'
+  root 'appointments#index'
 
   controller :sessions do
     get 'login' => :new
