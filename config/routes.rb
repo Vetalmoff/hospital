@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :doctors
   root 'appointments#index'
 
   controller :sessions do
