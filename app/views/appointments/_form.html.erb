@@ -21,6 +21,11 @@
     <%= form.datetime_select :end_time %>
   </div>
 
+  <div class="field">
+    <%= form.label :doctor_id %>
+    <%= form.select :doctor_id,
+                    Doctor.all.order(:name).map{ |doc| ["#{doc.name}", doc.id] } %>
+  </div>
 
 
   <div class="actions">

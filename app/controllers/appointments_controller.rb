@@ -15,6 +15,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @doctors = Doctor.all
   end
 
   # GET /appointments/1/edit
@@ -25,6 +26,8 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    @current_doctor = @appointment.doctor_id
+    puts @current_doctor
 
     respond_to do |format|
       if @appointment.save
@@ -69,6 +72,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:start_time, :end_time)
+      params.require(:appointment).permit(:start_time, :end_time, :doctor_id)
     end
 end
