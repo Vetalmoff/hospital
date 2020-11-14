@@ -3,6 +3,7 @@ class WorkingHoursValidator < ActiveModel::Validator
   START_TIME = 9
   END_TIME = 17
 
+
   def validate(record)
 
     if record.start_time.hour < START_TIME
