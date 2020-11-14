@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'main_page#index', as: 'main_page'
+  # get 'main_page/index'
   resources :doctors
   root 'appointments#index'
 

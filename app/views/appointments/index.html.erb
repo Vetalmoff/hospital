@@ -13,6 +13,7 @@
     <tr>
       <th>Start time</th>
       <th>End time</th>
+      <th>Doctor name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,7 +23,7 @@
       <tr>
         <td><%= appointment.start_time %></td>
         <td><%= appointment.end_time %></td>
-        <td>Doctor Id <%= appointment.doctor_id %></td>
+        <td><%= appointment.doctor.name %></td>
         <td><%= link_to 'Show', appointment %></td>
         <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

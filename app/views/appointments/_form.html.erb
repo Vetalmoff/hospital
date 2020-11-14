@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if  params[:doctor_id]%>
+    <h3>
+      to doctor: <%= @doctor.name  %>
+    </h3>
+  <% end %>
+
+
   <div class="field">
     <%= form.label :start_time %>
     <%= form.datetime_select :start_time %>
@@ -21,11 +28,19 @@
     <%= form.datetime_select :end_time %>
   </div>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.select :doctor_id,
-                    Doctor.all.order(:name).map{ |doc| ["#{doc.name}", doc.id] } %>
-  </div>
+  <% if params["doctor_id"] %>
+    <div class="field">
+      <%= form.hidden_field :doctor_id, value: params["doctor_id"] %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= form.label :doctor_id %>
+      <%= form.select :doctor_id,
+                      @doctors.map{ |doc| ["#{doc.name}", doc.id] } %>
+    </div>
+  <% end %>
+
+
 
 
   <div class="actions">

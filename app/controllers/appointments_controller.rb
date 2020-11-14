@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_doctors, only: [:new, :create]
 
   # GET /appointments
   # GET /appointments.json
@@ -15,7 +16,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-    @doctors = Doctor.all
+    @doctor = Doctor.find(params[:doctor_id])
   end
 
   # GET /appointments/1/edit
@@ -26,8 +27,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    @current_doctor = @appointment.doctor_id
-    puts @current_doctor
 
     respond_to do |format|
       if @appointment.save
@@ -69,6 +68,10 @@ class AppointmentsController < ApplicationController
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
+
+  def  set_doctors
+    @doctors = Doctor.all.order(:name)
+  end
 
     # Only allow a list of trusted parameters through.
     def appointment_params
