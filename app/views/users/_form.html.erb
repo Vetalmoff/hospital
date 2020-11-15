@@ -13,29 +13,32 @@
 
   <h2>Enter User Details</h2>
 
-  <div class="field">
-    <%= form.label :name, 'Name:' %>
-    <%= form.text_field :name, size: 40 %>
-  </div>
+  <div class="form-group" action="/login">
 
-  <div class="field">
-    <%= form.label :password, 'Password:' %>
-    <%= form.password_field :password, size: 40 %>
-  </div>
+    <div class="field">
+      <%= form.label :name, 'Name:' %>
+      <%= form.text_field :name, size: 40, :class => 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation, 'Confirm:' %>
-    <%= form.password_field :password_confirmation,
-                            id: :user_password_confirmation,
-                            size: 40 %>
-  </div>
+    <div class="field">
+      <%= form.label :password, 'Password:' %>
+      <%= form.password_field :password, size: 40, :class => 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :email, 'Email' %>
-    <%= form.email_field :email, size: 40 %>
-  </div>
+    <div class="field">
+      <%= form.label :password_confirmation, 'Confirm:' %>
+      <%= form.password_field :password_confirmation,
+                              id: :user_password_confirmation,
+                              size: 40, :class => 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="field">
+      <%= form.label :email, 'Email' %>
+      <%= form.email_field :email, size: 40, :class => 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit :class => 'btn btn-outline-primary' %>
+    </div>
   </div>
 <% end %>

@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= doctor.name %></h5>
           <p class="card-text"><%= doctor.position %></p>
-          <%= link_to 'Make an appointment', new_appointment_path(doctor_id: doctor.id), :class => "btn btn-primary" %>
+          <%= link_to 'Make an appointment', new_appointment_path(doctor_id: doctor.id), :class => "btn btn-outline-primary" %>
         </div>
       </div>
     </div>

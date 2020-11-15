@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="form-group" action="/login">
 
-  <div class="field">
-    <%= form.label :position %>
-    <%= form.text_field :position %>
-  </div>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :img %>
-    <%= form.text_field :img %>
-  </div>
+    <div class="field">
+      <%= form.label :position %>
+      <%= form.text_field :position, :class => 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="field">
+      <%= form.label :img %>
+      <%= form.text_field :img, :class => 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit :class => 'btn btn-outline-primary' %>
+    </div>
   </div>
 <% end %>

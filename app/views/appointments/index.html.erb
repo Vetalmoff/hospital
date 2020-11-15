@@ -26,9 +26,9 @@
         <td><%= appointment.start_time %></td>
         <td><%= appointment.end_time %></td>
         <td><%= appointment.doctor.name %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', appointment, :class => 'btn btn-outline-secondary' %></td>
+<!--        <td><%#= link_to 'Edit', edit_appointment_path(appointment), :class => 'btn btn-outline-secondary' %></td>-->
+        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Appointment', new_appointment_path %>
+<%= link_to 'New Appointment', new_appointment_path, :class => 'btn btn-outline-primary' %>

@@ -16,9 +16,9 @@
       <tr>
         <td><%= doctor.name %></td>
         <td><%= doctor.position %></td>
-        <td><%= link_to 'Show', doctor %></td>
-        <td><%= link_to 'Edit', edit_doctor_path(doctor) %></td>
-        <td><%= link_to 'Destroy', doctor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', doctor, :class => 'btn btn-outline-secondary' %></td>
+        <td><%= link_to 'Edit', edit_doctor_path(doctor), :class => 'btn btn-outline-secondary' %></td>
+        <td><%= link_to 'Destroy', doctor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Doctor', new_doctor_path %>
+<%= link_to 'New Doctor', new_doctor_path, :class => 'btn btn-outline-primary' %>
