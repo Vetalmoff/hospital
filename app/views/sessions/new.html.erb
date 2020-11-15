@@ -1,4 +1,3 @@
-<section class="depot_form">
 
   <% if flash[:alert] %>
     <aside class="notice">
@@ -6,7 +5,7 @@
     </aside>
   <% end %>
 
-  <%= form_tag do %>
+  <%= form_tag '/login' do %>
     <h2>Please Log In</h2>
 
     <div class="field">
@@ -23,4 +22,3 @@
       <%= submit_tag "Login" %>
     </div>
   <% end %>
-</section>

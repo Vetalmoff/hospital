@@ -16,7 +16,10 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-    @doctor = Doctor.find(params[:doctor_id])
+    if params[:doctor_id]
+      @doctor = Doctor.find(params[:doctor_id])
+    end
+
   end
 
   # GET /appointments/1/edit
@@ -33,7 +36,7 @@ class AppointmentsController < ApplicationController
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
-        format.html { render :new }
+        format.html { render :new}
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end

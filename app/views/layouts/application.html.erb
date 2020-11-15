@@ -20,7 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href=<%= main_page_path %>>Main page</a>
+              <a class="nav-link" href=<%= welcome_path %>>Home page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= main_page_index_path %>>Make an appointment</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=<%= appointments_path %>>Appointments</a>
@@ -31,6 +34,14 @@
             <li class="nav-item">
               <a class="nav-link" href=<%= users_path %>>Users</a>
             </li>
+            <form class="form-inline ml-auto">
+                <% if logged_in?%>
+                  <%= link_to "Logout", '/logout', method: :delete, class: "btn btn-secondary" %>
+                <% else %>
+                  <%= link_to "Login", '/login', method: :get, class: "btn btn-outline-secondary" %>
+                  <%= link_to "Sign Up", '/users/new', method: :get, class: "btn btn-outline-primary" %>
+                <% end %>
+            </form>
           </ul>
         </div>
       </nav>

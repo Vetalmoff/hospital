@@ -1,12 +1,15 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :authorized, only: [:new, :create, :welcome]
+
   def new
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to appointments_url, notice: "User #{User.name} logged in"
+    @user = User.find_by(email: params[:email])
+    if @user&.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to welcome_url
     else
       redirect_to login_url, alert: 'Invalid user/password combination'
     end
@@ -14,6 +17,10 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to appointments_url, notice: "Logged out"
+    redirect_to welcome_url
+  end
+
+  def welcome
+
   end
 end
