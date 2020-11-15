@@ -11,7 +11,7 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     search_day = Time.new(year, month, day)
     next_day = Time.new(year, month, day + 1)
 
-    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ?", search_day, next_day])
+    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ?", search_day, next_day, record.doctor_id])
 
     if @list_of_time_slots.length > 0
       @list_of_time_slots.each do |item|

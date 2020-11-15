@@ -19,7 +19,8 @@ class AppointmentsController < ApplicationController
     if params[:doctor_id]
       @doctor = Doctor.find(params[:doctor_id])
     end
-
+    @user_id = session[:user_id]
+    p @user_id
   end
 
   # GET /appointments/1/edit
@@ -30,7 +31,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
@@ -78,6 +78,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:start_time, :end_time, :doctor_id)
+      params.require(:appointment).permit(:start_time, :end_time, :doctor_id, :user_id)
     end
 end
