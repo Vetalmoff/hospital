@@ -7,7 +7,7 @@
         <img src=<%= doctor.img %> class="card-img-top" height="200" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%= doctor.name %></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text"><%= doctor.position %></p>
           <%= link_to 'Make an appointment', new_appointment_path(doctor_id: doctor.id), :class => "btn btn-primary" %>
         </div>
       </div>

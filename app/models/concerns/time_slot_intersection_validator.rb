@@ -22,6 +22,7 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
           record.errors[:start_time] << "We cant insert #{record.start_time.strftime "%H:%M"} - #{record.end_time.strftime "%H:%M"}, because your visit cross other visites!
                                             Free nearest hours you can get are :
                                                 #{ @recommended_time_slots.map { |item| "#{item[:start_time].strftime "%H:%M"} - #{item[:end_time].strftime "%H:%M"}" } }"
+          return
         end
       end
     end
@@ -61,7 +62,6 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     puts @list_free_time_slots
     @list_free_time_slots.each do |item|
       if duration <= (item[:end_time] - item[:start_time])
-        # puts "recommended===== #{item[:start_time].strftime("%H:%M")} - #{item[:end_time].strftime("%H:%M")}"
         @the_same_duration_timeslots.push(item)
       end
     end

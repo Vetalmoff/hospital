@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :set_doctors, only: [:new, :create]
+  before_action :set_doctors, :set_user_id, only: [:new, :create]
 
   # GET /appointments
   # GET /appointments.json
@@ -19,8 +19,6 @@ class AppointmentsController < ApplicationController
     if params[:doctor_id]
       @doctor = Doctor.find(params[:doctor_id])
     end
-    @user_id = session[:user_id]
-    p @user_id
   end
 
   # GET /appointments/1/edit
@@ -74,6 +72,10 @@ class AppointmentsController < ApplicationController
 
   def  set_doctors
     @doctors = Doctor.all.order(:name)
+  end
+
+  def set_user_id
+    @user_id = session[:user_id]
   end
 
     # Only allow a list of trusted parameters through.
