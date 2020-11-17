@@ -9,15 +9,15 @@ class DurationValidator < ActiveModel::Validator
     duration = record.end_time - record.start_time
 
     if duration > (LIMIT_DURATION * 60)
-      record.errors[:start_time] << "Duration should be less than #{LIMIT_DURATION} minutes"
+      record.errors[:base] << "Duration should be less than #{LIMIT_DURATION} minutes"
     end
 
     if duration % (MULTIPLIER * 60) != 0
-      record.errors[:start_time] << "Time should be divided by #{MULTIPLIER} minutes"
+      record.errors[:base] << "Time should be divided by #{MULTIPLIER} minutes"
     end
 
     if duration <= 0
-      record.errors[:start_time] << 'End time should be graiter than start time'
+      record.errors[:base] << 'End time should be later than start time'
     end
 
   end

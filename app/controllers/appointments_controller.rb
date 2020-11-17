@@ -83,3 +83,4 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:start_time, :end_time, :doctor_id, :user_id)
     end
 end
+

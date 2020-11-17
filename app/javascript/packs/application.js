@@ -20,10 +20,4 @@ require("channels")
 //= require bootstrap-sprockets
 //= require bootstrap
 
-const year = document.getElementById('appointment_start_time_1i')
-
-console.log(year)
-
-year.addEventListener("change", (event) => {
-    console.log(event.target)
-})
+console.log('dddddddddddddddddd')

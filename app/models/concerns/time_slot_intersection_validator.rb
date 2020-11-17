@@ -19,7 +19,7 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
           find_all_free_time_slots(record, day, month, year)
           find_all_the_same_duration_time_slots(record)
           find_recommended_time_slots(record)
-          record.errors[:start_time] << "We cant insert #{record.start_time.strftime "%H:%M"} - #{record.end_time.strftime "%H:%M"}, because your visit cross other visites!
+          record.errors[:base] << "We cant insert #{record.start_time.strftime "%H:%M"} - #{record.end_time.strftime "%H:%M"}, because your visit cross other visites!
                                             Free nearest hours you can get are :
                                                 #{ @recommended_time_slots.map { |item| "#{item[:start_time].strftime "%H:%M"} - #{item[:end_time].strftime "%H:%M"}" } }"
           return
