@@ -1,14 +1,17 @@
 
 <% if  @doctor%>
-  <h2>This day appointments to <%= @doctor.name %></h2>
-  <ul>
-    <% @doctor_this_day_appointments.each do |appointment| %>
-      <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
-    <% end %>
-  </ul>
+  <% if @doctor_this_day_appointments.length > 0 %>
+    <h2>This day appointments to <%= @doctor.name %></h2>
+    <ul>
+      <% @doctor_this_day_appointments.each do |appointment| %>
+        <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h2>There are no appointments on this day</h2>
+  <% end %>
 <% end %>
 
-<h2>New Appointment</h2>
 
 <%= render 'form', appointment: @appointment, doctors: @doctors %>
 

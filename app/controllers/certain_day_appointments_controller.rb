@@ -2,10 +2,13 @@ class CertainDayAppointmentsController < ApplicationController
   def index
     @appointments = Appointment.order(:start_time)
 
-    time_now = Time.now()
-    year = time_now.year
-    month = time_now.month
-    day = time_now.day
+    p '=============='
+    p params[:user_id]
+    year = params["start_time(1i)"]
+    month = params["start_time(2i)"]
+    day = params["start_time(3i)"]
+
+
 
     current_day = Time.new(year, month, day)
     next_day = current_day + 1.day

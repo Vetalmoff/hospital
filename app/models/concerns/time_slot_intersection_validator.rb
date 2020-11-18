@@ -11,7 +11,7 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     search_day = Time.new(year, month, day)
     next_day = Time.new(year, month, day + 1)
 
-    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ?", search_day, next_day, record.doctor_id])
+    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ?", search_day, next_day, record.doctor_id]).order(:start_time)
 
     if @list_of_time_slots.length > 0
       @list_of_time_slots.each do |item|
@@ -53,18 +53,20 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
       last_free_time_slot = {start_time: @list_of_time_slots[-1].end_time, end_time: end_time}
       @list_free_time_slots.push(last_free_time_slot)
     end
+    puts @list_free_time_slots
   end
 
   def find_all_the_same_duration_time_slots(time_slot)
     duration = time_slot.end_time -  time_slot.start_time
     p duration
     @the_same_duration_timeslots = []
-    puts @list_free_time_slots
+    p 'freee all timeslot'
     @list_free_time_slots.each do |item|
       if duration <= (item[:end_time] - item[:start_time])
         @the_same_duration_timeslots.push(item)
       end
     end
+    puts @the_same_duration_timeslots
   end
 
   def find_recommended_time_slots(time_slot)

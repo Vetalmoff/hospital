@@ -29,7 +29,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    p appointment_params
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to certain_day_appointments_index_path(appointment_params) }
@@ -86,13 +85,12 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:start_time, :end_time, :doctor_id, :user_id)
     end
 
-  def set_doctor_this_day_appointments
+  def set_doctor_this_day_appointments(date=Time.now())
     @appointments = Appointment.order(:start_time)
 
-    time_now = Time.now()
-    year = time_now.year
-    month = time_now.month
-    day = time_now.day
+    year = date.year
+    month = date.month
+    day = date.day
 
     current_day = Time.new(year, month, day)
     next_day = current_day + 1.day
