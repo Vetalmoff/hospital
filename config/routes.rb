@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'certain_day_appointments/index'
   root 'sessions#welcome'
   get 'main_page/index'
   resources :doctors

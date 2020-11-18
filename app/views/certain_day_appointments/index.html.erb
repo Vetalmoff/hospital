@@ -1,0 +1,10 @@
+
+
+<h2>Your appointment was successfully created to <%= @doctor.name %></h2>
+<ul>
+  <% @doctor_this_day_appointments.each do |appointment| %>
+    <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary' %>

@@ -1,7 +1,14 @@
-<h1>New Appointment</h1>
 
+<% if  @doctor%>
+  <h2>This day appointments to <%= @doctor.name %></h2>
+  <ul>
+    <% @doctor_this_day_appointments.each do |appointment| %>
+      <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-
+<h2>New Appointment</h2>
 
 <%= render 'form', appointment: @appointment, doctors: @doctors %>
 

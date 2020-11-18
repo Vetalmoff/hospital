@@ -17,7 +17,18 @@ class AppointmentsController < ApplicationController
   def new
     @appointment = Appointment.new
     if params[:doctor_id]
+      @appointments = Appointment.order(:start_time)
+
+      time_now = Time.now()
+      year = time_now.year
+      month = time_now.month
+      day = time_now.day
+
+      current_day = Time.new(year, month, day)
+      next_day = current_day + 1.day
+
       @doctor = Doctor.find(params[:doctor_id])
+      @doctor_this_day_appointments = @appointments.where(["start_time > ? and start_time < ? and doctor_id = ?", current_day, next_day, params[:doctor_id]])
     end
   end
 
@@ -32,10 +43,12 @@ class AppointmentsController < ApplicationController
     p appointment_params
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to certain_day_appointments_index_path(appointment_params) }
+        # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
-        format.html { render :new}
+        # format.html { redirect_to new_appointment_path(appointment_params)  }
+        format.html { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
