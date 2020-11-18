@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :set_doctors, :set_user_id, only: [:new, :create, :index, :update]
+  before_action :set_doctors, :set_user_id, only: [:new, :create, :index, :update, :edit]
 
   # GET /appointments
   # GET /appointments.json

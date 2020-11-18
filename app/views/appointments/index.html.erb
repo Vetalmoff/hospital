@@ -8,14 +8,17 @@
   </aside>
 <% end %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>User name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Doctor name</th>
-      <th colspan="3"></th>
+      <th scope="col">User name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Start time</th>
+      <th scope="col">End time</th>
+      <th scope="col">Doctor name</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Destroy</th>
     </tr>
   </thead>
 
@@ -23,11 +26,12 @@
     <% @appointments.each do |appointment| %>
       <tr>
         <td><%= appointment.user.name %></td>
-        <td><%= appointment.start_time %></td>
-        <td><%= appointment.end_time %></td>
+        <td><%= appointment.start_time.strftime('%F') %></td>
+        <td><%= appointment.start_time.strftime('%H:%M') %></td>
+        <td><%= appointment.end_time.strftime('%H:%M') %></td>
         <td><%= appointment.doctor.name %></td>
         <td><%= link_to 'Show', appointment, :class => 'btn btn-outline-secondary' %></td>
-<!--        <td><%#= link_to 'Edit', edit_appointment_path(appointment), :class => 'btn btn-outline-secondary' %></td>-->
+        <td><%= link_to 'Edit', edit_appointment_path(appointment), :class => 'btn btn-outline-secondary' %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-danger' %></td>
       </tr>
     <% end %>

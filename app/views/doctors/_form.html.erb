@@ -1,11 +1,11 @@
 <%= form_with(model: doctor, local: true) do |form| %>
   <% if doctor.errors.any? %>
     <div id="error_explanation">
-      <h2 class="alert alert-danger"><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+<!--      <h2 class="alert alert-danger"><%#= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>-->
 
       <ul>
         <% doctor.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="alert alert-danger"><%= message %></li>
         <% end %>
       </ul>
     </div>

@@ -2,15 +2,22 @@
 <% if notice %>
   <p id="notice", class="alert alert-success"><%= notice %></p>
 <% end %>
+
+<p>
+  <strong>Date:</strong>
+  <%= @appointment.start_time.strftime('%F') %>
+</p>
+
 <p>
   <strong>Start time:</strong>
-  <%= @appointment.start_time %>
+  <%= @appointment.start_time.strftime('%H:%M') %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @appointment.end_time %>
+  <%= @appointment.end_time.strftime('%H:%M') %>
 </p>
 
-<!--<%#= link_to 'Edit', edit_appointment_path(@appointment), :class => 'btn btn-outline-secondary' %> |-->
-<%= link_to 'Back', appointments_path, :class => 'btn btn-outline-secondary' %>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment), :class => 'btn btn-outline-secondary' %> |
+<%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary' %>
