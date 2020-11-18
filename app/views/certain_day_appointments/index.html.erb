@@ -3,8 +3,13 @@
 <h2>Your appointment was successfully created to <%= @doctor.name %></h2>
 <ul>
   <% @doctor_this_day_appointments.each do |appointment| %>
-    <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+    <% if appointment.id === @your_appointment.id %>
+      <li class="text-primary"> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+    <% else %>
+      <li> <%= appointment.start_time %> - <%= appointment.end_time %></li>
+    <% end %>
   <% end %>
 </ul>
+
 
 <%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary' %>
