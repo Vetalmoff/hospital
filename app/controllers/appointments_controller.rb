@@ -102,7 +102,6 @@ class AppointmentsController < ApplicationController
 
     @doctor = Doctor.find(params[:doctor_id])
     @doctor_this_day_appointments = @appointments.where(["start_time > ? and start_time < ? and doctor_id = ?", current_day, next_day, params[:doctor_id]])
-
   end
 end
 

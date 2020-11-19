@@ -10,5 +10,6 @@ class User < ApplicationRecord
             length: { minimum: 4, maximum: 254 }
   validates_associated :appointments
 
+
   has_secure_password
 end

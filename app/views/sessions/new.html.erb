@@ -10,18 +10,18 @@
     <h2>Please Log In</h2>
     <div class="form-group" action="/login">
 
-      <div class="field">
+      <div class="form-group">
         <%= label_tag :email, 'Email:' %>
         <%= email_field_tag :email, params[:email], :class => 'form-control' %>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
 
-      <div class="field">
+      <div class="form-group">
         <%= label_tag :password, 'Password:' %>
         <%= password_field_tag :password, params[:password], :class => 'form-control' %>
       </div>
 
-      <div class="actions">
+      <div class="mt-3">
         <%= submit_tag "Login", :class => 'btn btn-primary' %>
       </div>
     </div>

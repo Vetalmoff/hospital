@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticated?, only: [:new, :create]
   before_action :authorized?, only: [:index]
+  before_action :the_same_user?
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -66,6 +67,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -76,4 +78,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :email, :role)
     end
+
+  def the_same_user?
+    puts params[:id]
+    puts current_user.id
+    redirect_to '/welcome' unless current_user.id.to_s == params[:id] || is_admin?
+  end
 end
