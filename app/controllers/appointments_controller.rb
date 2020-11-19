@@ -1,6 +1,10 @@
 class AppointmentsController < ApplicationController
+
+
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :set_doctors, :set_user_id, only: [:new, :create, :index, :update, :edit]
+  before_action :authorized?, only: [:index]
+
 
   # GET /appointments
   # GET /appointments.json
@@ -29,6 +33,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    puts appointment_params
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to certain_day_appointments_index_path(appointment_params) }
@@ -82,7 +87,7 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:start_time, :end_time, :doctor_id, :user_id)
+      params.require(:appointment).permit(:start_time, :end_time, :doctor_id, :user_id, :date)
     end
 
   def set_doctor_this_day_appointments(date=Time.now())

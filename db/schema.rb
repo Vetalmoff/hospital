@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_181042) do
+ActiveRecord::Schema.define(version: 2020_11_18_220844) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.timestamp "start_time"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_181042) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "user"
   end
 
   add_foreign_key "appointments", "doctors"

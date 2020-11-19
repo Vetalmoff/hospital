@@ -22,21 +22,25 @@
         <li class="nav-item">
           <a class="nav-link" href=<%= welcome_path %>>Home page</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= main_page_index_path %>>Make an appointment</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= user_cabinet_index_path %>>My account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= appointments_path %>>Appointments</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= doctors_path %>>Doctors</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href=<%= users_path %>>Users</a>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href=<%= main_page_index_path %>>Make an appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=<%= user_cabinet_index_path %>>My account</a>
+          </li>
+          <% if is_admin? %>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= appointments_path %>>Appointments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= doctors_path %>>Doctors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= users_path %>>Users</a>
+            </li>
+          <% end %>
+        <% end %>
       </ul>
       <form class="form-inline ml-auto">
         <% if logged_in?%>

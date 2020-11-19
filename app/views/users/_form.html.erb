@@ -37,6 +37,15 @@
       <%= form.email_field :email, size: 40, :class => 'form-control' %>
     </div>
 
+    <% if is_admin? %>
+      <div class="field">
+        <%= form.radio_button(:role, "admin") %>
+        <%= form.label(:role, "Admin") %>
+        <%= form.radio_button(:role, "user") %>
+        <%= form.label(:role, "User") %>
+      </div>
+    <% end %>
+
     <div class="actions">
       <%= form.submit :class => 'btn btn-outline-primary' %>
     </div>

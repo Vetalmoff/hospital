@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-  skip_before_action :authorized, only: [:new, :create]
+  skip_before_action :authenticated?, only: [:new, :create]
+  before_action :authorized?, only: [:index]
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -72,6 +74,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :email)
+      params.require(:user).permit(:name, :password, :password_confirmation, :email, :role)
     end
 end
