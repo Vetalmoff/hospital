@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'certain_doctor_appointments/index'
   get 'user_cabinet/past_appointments'
   get 'user_cabinet/future_appointments'
   get 'user_cabinet/account'
