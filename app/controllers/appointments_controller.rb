@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all.order(:start_time)
+    @appointments = Appointment.all.order(start_time: :desc)
   end
 
   # GET /appointments/1

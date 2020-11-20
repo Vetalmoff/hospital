@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
   validates :name, length: { minimum: 3 }
   validates :email,
-            format: { with: /\A(.+)@(.+)\z/, message: "Email invalid"  },
+            format: { with: /\A(.+)@(.+)\z/, message: "wrong format"  },
             uniqueness: { case_sensitive: false },
             length: { minimum: 4, maximum: 254 }
   validates_associated :appointments
