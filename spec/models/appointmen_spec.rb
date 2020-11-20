@@ -4,11 +4,9 @@ require_relative '../../app/models/user'
 
 RSpec.describe Appointment, :type => :model do
 
+
   subject { described_class.new(start_time: Time.new(2020, 01, 01, 12, 0, 0),
-                                end_time: Time.new(2020, 01, 01, 12, 10, 0),
-                                doctor_id: "6",
-                                user_id: "12"
-                                )
+                                end_time: Time.new(2020, 01, 01, 12, 10, 0))
   }
 
 

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticated?, only: [:new, :create]
   before_action :authorized?, only: [:index]
-  before_action :the_same_user?
+  before_action :the_same_user?, only: [:index, :show, :edit, :update, :destroy]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 

@@ -1,4 +1,7 @@
 
+<% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<% end %>
 
 <h2>Your appointment was successfully created to <%= @doctor.name %></h2>
     <table class="table">
@@ -14,7 +17,7 @@
       <tbody>
       <% @doctor_this_day_appointments.each do |appointment| %>
         <% if appointment.id === @your_appointment.id %>
-          <tr class="text-primary">
+          <tr class="text-success">
         <% else %>
           <tr>
         <% end %>

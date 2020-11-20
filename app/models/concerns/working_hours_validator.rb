@@ -14,5 +14,9 @@ class WorkingHoursValidator < ActiveModel::Validator
       record.errors[:end_time] << "Start time should be earlier than #{END_TIME}-00"
     end
 
+    if record.start_time < Time.now()
+      record.errors[:base] << "Start time should be later than #{Time.now().strftime('%F, %H:%M')}"
+    end
+
   end
 end

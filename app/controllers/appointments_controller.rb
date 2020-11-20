@@ -4,12 +4,13 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :set_doctors, :set_user_id, only: [:new, :create, :index, :update, :edit]
   before_action :authorized?, only: [:index]
+  before_action :the_same_user?, only: [:index, :show, :edit, :update, :destroy]
 
 
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.all.order(:start_time)
   end
 
   # GET /appointments/1
@@ -36,7 +37,7 @@ class AppointmentsController < ApplicationController
     puts appointment_params
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to certain_day_appointments_index_path(appointment_params) }
+        format.html { redirect_to certain_day_appointments_index_path(appointment_params), notice: 'Appointment was successfully created.' }
         # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
@@ -101,7 +102,16 @@ class AppointmentsController < ApplicationController
     next_day = current_day + 1.day
 
     @doctor = Doctor.find(params[:doctor_id])
-    @doctor_this_day_appointments = @appointments.where(["start_time > ? and start_time < ? and doctor_id = ?", current_day, next_day, params[:doctor_id]])
+    @doctor_this_day_appointments = @appointments.where([
+                                                          "start_time > ? and start_time < ? and doctor_id = ?",
+                                                          current_day, next_day, params[:doctor_id]
+                                                        ])
+  end
+
+  def the_same_user?
+    redirect_to '/welcome',
+                notice: "Permission denied" unless
+      is_admin? || current_user.id.to_s == Appointment.find_by_id(params[:id]).user_id.to_s
   end
 end
 

@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+
+<% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<% end %>
 
 <h1>Appointments</h1>
 
@@ -8,36 +11,38 @@
   </aside>
 <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">User name</th>
-      <th scope="col">Date</th>
-      <th scope="col">Start time</th>
-      <th scope="col">End time</th>
-      <th scope="col">Doctor name</th>
-      <th scope="col">Show</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Destroy</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @appointments.each do |appointment| %>
+<% if  @appointments.length > 0 %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= appointment.user.name %></td>
-        <td><%= appointment.start_time.strftime('%F') %></td>
-        <td><%= appointment.start_time.strftime('%H:%M') %></td>
-        <td><%= appointment.end_time.strftime('%H:%M') %></td>
-        <td><%= appointment.doctor.name %></td>
-        <td><%= link_to 'Show', appointment, :class => 'btn btn-outline-secondary' %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment), :class => 'btn btn-outline-secondary' %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-danger' %></td>
+        <th scope="col">User name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Start time</th>
+        <th scope="col">End time</th>
+        <th scope="col">Doctor name</th>
+        <th scope="col">Show</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Destroy</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <td><%= appointment.user.name %></td>
+          <td><%= appointment.start_time.strftime('%F') %></td>
+          <td><%= appointment.start_time.strftime('%H:%M') %></td>
+          <td><%= appointment.end_time.strftime('%H:%M') %></td>
+          <td><%= appointment.doctor.name %></td>
+          <td><%= link_to 'Show', appointment, :class => 'btn btn-outline-secondary' %></td>
+          <td><%= link_to 'Edit', edit_appointment_path(appointment), :class => 'btn btn-outline-secondary' %></td>
+          <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-outline-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h3>There are no any appointments.</h3>
+<% end %>
 
 <%= link_to 'New Appointment', new_appointment_path, :class => 'btn btn-outline-primary mt-3' %>

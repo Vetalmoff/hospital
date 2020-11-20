@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticated?
-    redirect_to '/welcome' unless logged_in?
+    redirect_to '/welcome', notice: 'You should to log in or sign up' unless logged_in?
   end
 
   def authorized?
-    redirect_to '/welcome' unless is_admin?
+    redirect_to '/welcome', notice: 'Permission denied' unless is_admin?
   end
 
 end
