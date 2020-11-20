@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :set_doctors, :set_user_id, only: [:new, :create, :index, :update, :edit]
   before_action :authorized?, only: [:index]
-  before_action :the_same_user?, only: [:index, :show, :edit, :update, :destroy]
+  before_action :the_same_user?, only: [:show, :edit, :update, :destroy]
 
 
   # GET /appointments
@@ -110,7 +110,7 @@ class AppointmentsController < ApplicationController
 
   def the_same_user?
     redirect_to '/welcome',
-                notice: "Permission denied" unless
+                alert: "Permission denied" unless
       is_admin? || current_user.id.to_s == Appointment.find_by_id(params[:id]).user_id.to_s
   end
 end

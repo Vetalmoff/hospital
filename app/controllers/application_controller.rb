@@ -14,15 +14,15 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    logged_in? && current_user.role === 'admin'
+    current_user.role === 'admin'
   end
 
   def authenticated?
-    redirect_to '/welcome', notice: 'You should to log in or sign up' unless logged_in?
+    redirect_to '/welcome', alert: 'You should to log in or sign up' unless logged_in?
   end
 
   def authorized?
-    redirect_to '/welcome', notice: 'Permission denied' unless is_admin?
+    redirect_to '/welcome', alert: 'Permission denied' unless logged_in? && is_admin?
   end
 
 end

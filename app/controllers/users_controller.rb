@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   skip_before_action :authenticated?, only: [:new, :create]
-  before_action :authorized?, only: [:index]
-  before_action :the_same_user?, only: [:index, :show, :edit, :update, :destroy]
 
+  before_action :authorized?, only: [:index]
+  before_action :the_same_user?, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
+        format.html { redirect_to welcome_url, notice: "User #{@user.name} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     end
   end
 
+  rescue_from 'User::Error' do |exception|
+    ➤ redirect_to users_url, notice: exception.message
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -82,6 +86,6 @@ class UsersController < ApplicationController
   def the_same_user?
     puts params[:id]
     puts current_user.id
-    redirect_to '/welcome' unless current_user.id.to_s == params[:id] || is_admin?
+    redirect_to '/welcome', alert: 'Permission denied' unless is_admin? || current_user.id.to_s == params[:id]
   end
 end

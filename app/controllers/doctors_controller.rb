@@ -46,7 +46,7 @@ class DoctorsController < ApplicationController
   def update
     respond_to do |format|
       if @doctor.update(doctor_params)
-        format.html { redirect_to @doctor, notice: 'Doctor was successfully updated.' }
+        format.html { redirect_to welcome_url, notice: 'Doctor was successfully updated.' }
         format.json { render :show, status: :ok, location: @doctor }
       else
         format.html { render :edit }

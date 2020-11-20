@@ -1,9 +1,10 @@
 
   <% if flash[:alert] %>
-    <aside class="notice">
+    <aside class="notice alert alert-danger">
       <%= flash[:alert] %>
     </aside>
   <% end %>
+
 
 
   <%= form_tag '/login' do %>
