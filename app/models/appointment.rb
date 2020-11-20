@@ -5,4 +5,5 @@ class Appointment < ApplicationRecord
   validates_with DurationValidator, { message: "must be given please" }
   validates_with WorkingHoursValidator
   validates_with TimeSlotIntersectionValidator
+  validates_with AlreadyExistingTimeSlotValidator
 end
