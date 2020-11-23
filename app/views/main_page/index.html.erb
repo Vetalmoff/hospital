@@ -1,19 +1,21 @@
-<h1>Our doctors</h1>
+  <h1>Our doctors</h1>
 
-<div class="row">
-  <% @doctors.each do |doctor| %>
-    <div style="max-width: 300px" >
-      <div class="card" >
-        <img src=<%= doctor.img %> class="card-img-top" height="200" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%= doctor.name %></h5>
-          <p class="card-text"><%= doctor.position %></p>
-          <%= link_to 'Make an appointment', new_appointment_path(doctor_id: doctor.id), :class => "btn btn-outline-primary" %>
+  <div class="row">
+    <% @doctors.each do |doctor| %>
+      <div style="max-width: 300px" >
+        <div class="card" >
+          <img src=<%= doctor.img %> class="card-img-top" height="200" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= doctor.name %></h5>
+            <p class="card-text"><%= doctor.position %></p>
+            <%= link_to 'Make an appointment', new_appointment_path(doctor_id: doctor.id), :class => "btn btn-outline-primary" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+
+
 
 
 

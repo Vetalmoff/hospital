@@ -12,7 +12,7 @@ class User < ApplicationRecord
             format: { with: /\A(.+)@(.+)\z/, message: "wrong format"  },
             uniqueness: { case_sensitive: false },
             length: { minimum: 4, maximum: 254 }
-  validates_associated :appointments
+  # validates_associated :appointments
   has_secure_password
 
   # def the_last_admin_deleting

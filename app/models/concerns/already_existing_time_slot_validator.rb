@@ -7,7 +7,22 @@ class AlreadyExistingTimeSlotValidator < ActiveModel::Validator
     search_day = Time.new(year, month, day)
     next_day = Time.new(year, month, day + 1)
 
-    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and user_id = ?", search_day, next_day, record.user_id]).order(:start_time)
+    if record.id
+      @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and user_id = ? and id != ?",
+                                               search_day,
+                                               next_day,
+                                               record.user_id,
+                                               record.id
+                                              ])
+                                       .order(:start_time)
+    else
+      @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and user_id = ?",
+                                               search_day,
+                                               next_day,
+                                               record.user_id])
+                                       .order(:start_time)
+
+    end
 
     if @list_of_time_slots.length > 0
       @list_of_time_slots.each do |item|

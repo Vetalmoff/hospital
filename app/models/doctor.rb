@@ -5,5 +5,5 @@ class Doctor < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: true }, length: { minimum: 3 }
   validates :img, format: { with: /\A(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))\z/,
                             message: 'invalid image url'}
-  validates_associated :appointments
+  # validates_associated :appointments
 end

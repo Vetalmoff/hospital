@@ -4,6 +4,9 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
   END_TIME = WorkingHoursValidator::END_TIME
 
   def validate(record)
+    puts 'record id ========'
+    puts record.id
+
     day = record.start_time.day
     month = record.start_time.month
     year = record.start_time.year
@@ -11,7 +14,22 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     search_day = Time.new(year, month, day)
     next_day = Time.new(year, month, day + 1)
 
-    @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ?", search_day, next_day, record.doctor_id]).order(:start_time)
+    if record.id
+      @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ? and id != ?",
+                                               search_day,
+                                               next_day,
+                                               record.doctor_id,
+                                               record.id
+                                              ])
+                                       .order(:start_time)
+    else
+      @list_of_time_slots = Appointment.where(["start_time > ? and start_time < ? and doctor_id = ?",
+                                               search_day,
+                                               next_day,
+                                               record.doctor_id])
+                                       .order(:start_time)
+
+    end
 
     if @list_of_time_slots.length > 0
       @list_of_time_slots.each do |item|
@@ -35,7 +53,8 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     end_time = Time.new(year, month, day, END_TIME)
 
     if first_time != @list_of_time_slots[0].start_time
-      first_free_time_slot = {start_time: first_time, end_time: @list_of_time_slots[0].start_time}
+      first_free_time_slot = {start_time: first_time,
+                              end_time: @list_of_time_slots[0].start_time}
       @list_free_time_slots = [first_free_time_slot]
     else
       @list_free_time_slots = []
@@ -44,13 +63,15 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     i = 0
     while (i < @list_of_time_slots.length - 1)
       if @list_of_time_slots[i].end_time != @list_of_time_slots[i+1].start_time
-        @list_free_time_slots.push({start_time: @list_of_time_slots[i].end_time, end_time: @list_of_time_slots[i+1].start_time})
+        @list_free_time_slots.push({start_time: @list_of_time_slots[i].end_time,
+                                    end_time: @list_of_time_slots[i+1].start_time})
       end
       i += 1
     end
 
     if end_time != @list_of_time_slots[-1].end_time
-      last_free_time_slot = {start_time: @list_of_time_slots[-1].end_time, end_time: end_time}
+      last_free_time_slot = {start_time: @list_of_time_slots[-1].end_time,
+                             end_time: end_time}
       @list_free_time_slots.push(last_free_time_slot)
     end
     puts @list_free_time_slots
