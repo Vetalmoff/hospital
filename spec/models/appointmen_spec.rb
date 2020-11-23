@@ -1,12 +1,13 @@
 require 'rails_helper'
-require_relative '../../app/models/doctor'
-require_relative '../../app/models/user'
 
 RSpec.describe Appointment, :type => :model do
 
 
-  subject { described_class.new(start_time: Time.new(2020, 01, 01, 12, 0, 0),
-                                end_time: Time.new(2020, 01, 01, 12, 10, 0))
+  subject { described_class.new(start_time: Time.new(2021, 01, 01, 12, 0, 0),
+                                end_time: Time.new(2021, 01, 01, 12, 10, 0),
+                                doctor_id: 1,
+                                user_id: 1)
+
   }
 
 
@@ -27,10 +28,6 @@ RSpec.describe Appointment, :type => :model do
     end
   end
 
-  describe "appointment should belong to user and doctor" do
-    it { should belong_to(:user) }
-    it { should belong_to(:doctor) }
-  end
 
 end
 

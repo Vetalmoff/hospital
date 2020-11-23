@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :appointments
   has_many :doctors, through: :appointments
   validates :name, :email, presence: true
-  validates :password, length: { minimum: 6 }
+  validates :password, presence: true, on: :create
+  validates :password, length: { minimum: 6 }, allow_blank: true
   validates :name, length: { minimum: 3 }
   validates :email,
             format: { with: /\A(.+)@(.+)\z/, message: "wrong format"  },
