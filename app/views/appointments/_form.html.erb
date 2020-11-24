@@ -1,0 +1,53 @@
+<%= form_with(model: appointment, local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+<!--      <h2 class="alert alert-danger"><%#= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved</h2>-->
+
+      <ul>
+        <% appointment.errors.full_messages.each do |message| %>
+          <li class="alert alert-danger"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if  params[:doctor_id]%>
+    <h2>Make an appointment with doctor <%= @doctor.name %></h2>
+  <% end %>
+
+  <div class="row ">
+    <div class="col-6">
+      <div class="form-group">
+        <%= form.label :start_time %>
+        <%= form.datetime_select :start_time, :id => 'start_time', html5: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :end_time %>
+        <%= form.datetime_select :end_time, :id => 'end_time' %>
+      </div>
+
+      <div class="field">
+        <%= form.hidden_field :user_id, value: @user_id %>
+      </div>
+
+      <% if params["doctor_id"] %>
+        <div class="field">
+          <%= form.hidden_field :doctor_id, value: params["doctor_id"] %>
+        </div>
+      <% else %>
+        <div class="field">
+          <%= form.label :doctor_id %>
+          <%= form.select :doctor_id, @doctors.map{ |doc| ["#{doc.name}", doc.id] } %>
+        </div>
+      <% end %>
+
+      <%= javascript_pack_tag 'theSameTimeForm' %>
+
+      <div class="actions">
+        <%= form.submit :class => 'btn btn-outline-primary mt-3' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,15 @@
+<h1>Welcome to our clinic :)  </h1>
+<% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+  <p id="notice" class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+
+<% if logged_in? %>
+  <h2>Hello <%= current_user.name %></h2>
+<% else %>
+  <h2>You should to log In to have access!</h2>
+<%end%>

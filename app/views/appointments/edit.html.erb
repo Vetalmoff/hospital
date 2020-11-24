@@ -1,0 +1,11 @@
+<h1>Editing Appointment</h1>
+
+<%= render 'form', appointment: @appointment %>
+
+<%= link_to 'Show', @appointment, :class => 'btn btn-outline-secondary mt-3' %> |
+
+<% if  is_admin? %>
+  <%= link_to 'Back', appointments_path, :class => 'btn btn-outline-secondary mt-3' %>
+<% else %>
+  <%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary mt-3' %>
+<% end %>

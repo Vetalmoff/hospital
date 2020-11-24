@@ -1,0 +1,21 @@
+<% if notice %>
+  <p id="notice", class="alert alert-success"><%= notice %></p>
+<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-outline-secondary mt-3' %>
+
+<% if  is_admin? %>
+  <%= link_to 'Back', users_path, :class => 'btn btn-outline-secondary mt-3' %>
+<% else %>
+  <%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary mt-3' %>
+<% end %>
+

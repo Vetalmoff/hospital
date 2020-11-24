@@ -1,0 +1,30 @@
+<% if @doctor_appointments.length > 0 %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">User name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Start time</th>
+      <th scope="col">End time</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @doctor_appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.user.name %></td>
+        <td><%= appointment.start_time.strftime('%F') %></td>
+        <td><%= appointment.start_time.strftime('%H:%M') %></td>
+        <td><%= appointment.end_time.strftime('%H:%M') %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>There are no appointments</h2>
+<% end %>
+
+
+
+
+<%= link_to 'Back', main_page_index_path, :class => 'btn btn-outline-secondary' %>

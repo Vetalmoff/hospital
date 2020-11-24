@@ -1,0 +1,15 @@
+<% if notice %>
+  <p id="notice", class="alert alert-success"><%= notice %></p>
+<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @doctor.name %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @doctor.position %>
+</p>
+
+<%= link_to 'Edit', edit_doctor_path(@doctor), :class => 'btn btn-outline-secondary mt-3' %> |
+<%= link_to 'Back', doctors_path, :class => 'btn btn-outline-secondary mt-3' %>
