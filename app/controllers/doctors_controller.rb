@@ -65,6 +65,10 @@ class DoctorsController < ApplicationController
     end
   end
 
+  rescue_from 'Mysql2::Error' do |exception|
+    redirect_to doctors_url, alert: "We are unable to delete the doctor #{@doctor.name} because he has some appointments"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_doctor

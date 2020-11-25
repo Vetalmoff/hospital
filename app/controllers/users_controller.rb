@@ -31,6 +31,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    @users = User.order(:name)
+    if  @users.length === 0
+      @user.role = 'admin'
+    end
+
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
@@ -60,15 +65,19 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+      @user.destroy
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
     end
   end
 
   rescue_from 'User::Error' do |exception|
-    ➤ redirect_to users_url, notice: exception.message
+    redirect_to users_url, alert: exception.message
+  end
+
+  rescue_from 'Mysql2::Error' do |exception|
+    redirect_to users_url, alert: "We are unable to delete the user #{@user.email} because he has some appointments"
   end
 
 
@@ -84,8 +93,6 @@ class UsersController < ApplicationController
     end
 
   def the_same_user?
-    puts params[:id]
-    puts current_user.id
     redirect_to '/welcome', alert: 'Permission denied' unless is_admin? || current_user.id.to_s == params[:id]
   end
 end
