@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   before_destroy :the_last_admin_deleting
-  before_update :update_the_last_admin
+  before_update :the_last_admin_updating
 
   class Error < StandardError
   end
@@ -25,14 +25,14 @@ class User < ApplicationRecord
   def the_last_admin_deleting
     admins = User.where(['role = ?', 'admin'])
     if admins.count === 1
-      raise Error.new "Can't delete last admin"
+      if role === 'admin'
+        raise Error.new "Can't delete the last admin"
+      end
     end
   end
 
-  def update_the_last_admin
-    puts 'hahaha'
+  def the_last_admin_updating
     admins = User.where(['role = ?', 'admin'])
-    puts role
     if admins.count === 1
       if role === 'user'
         raise Error.new "Can't set user from the last admin"

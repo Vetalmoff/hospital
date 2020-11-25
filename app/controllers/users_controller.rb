@@ -76,6 +76,10 @@ class UsersController < ApplicationController
     redirect_to users_url, alert: exception.message
   end
 
+  rescue_from 'Mysql2::Error' do |exception|
+    redirect_to users_url, alert: "We are unable to delete the user #{@user.email} because he has some appointments"
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
