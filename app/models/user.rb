@@ -1,6 +1,10 @@
 class User < ApplicationRecord
 
-  # before_destroy :the_last_admin_deleting
+  before_destroy :the_last_admin_deleting
+  before_update :update_the_last_admin
+
+  class Error < StandardError
+  end
 
   has_many :appointments
   has_many :doctors, through: :appointments
@@ -15,10 +19,25 @@ class User < ApplicationRecord
   # validates_associated :appointments
   has_secure_password
 
-  # def the_last_admin_deleting
-  #   admins = User.where(['role = ?', 'admin'])
-  #   if admins.count.zerro?
-  #     raise Error.new "Can't delete last admin"
-  #   end
-  # end
+
+  private
+
+  def the_last_admin_deleting
+    admins = User.where(['role = ?', 'admin'])
+    if admins.count === 1
+      raise Error.new "Can't delete last admin"
+    end
+  end
+
+  def update_the_last_admin
+    puts 'hahaha'
+    admins = User.where(['role = ?', 'admin'])
+    puts role
+    if admins.count === 1
+      if role === 'user'
+        raise Error.new "Can't set user from the last admin"
+      end
+    end
+  end
+
 end
