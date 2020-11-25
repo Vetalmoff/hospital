@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to welcome_url
+      redirect_to main_page_index_url, notice: "Hello #{@user.name}."
     else
       redirect_to login_url, alert: 'Invalid user/password combination'
     end

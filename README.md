@@ -21,9 +21,9 @@ You should :
 * Create some directory and clone this repository into it
 * Enter created directory and run bundle install
 * If you receive error message like this: "Your Yarn packages are out of date!"
-  Please run in your terminal `yarn install --check-files` to update.
-*Than go to the file config/database.yml and change username: and password: 
-    on yours db configuration parameters, in order to have access to your database.
+  Please run in your terminal `yarn install --check-files` to update
+*Than go to the file config/database.yml and change `username:` and `password:` 
+    to yours db configuration parameters, in order to have access to your database.
 * Run `rails db:create` to create data bases in your application
 * Run `rails db:migrate` to create tables and dependencies
 * If you want run `rails db:seed` to create some doctors and users
