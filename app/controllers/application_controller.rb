@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticated?
-    redirect_to '/welcome', alert: 'You should to log in or sign up' unless logged_in?
+    redirect_to welcome_path, alert: 'You should to log in or sign up' unless logged_in?
   end
 
   def authorized?

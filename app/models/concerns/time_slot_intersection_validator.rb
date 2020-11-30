@@ -4,9 +4,6 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
   END_TIME = WorkingHoursValidator::END_TIME
 
   def validate(record)
-    puts 'record id ========'
-    puts record.id
-
     day = record.start_time.day
     month = record.start_time.month
     year = record.start_time.year
@@ -74,20 +71,20 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
                              end_time: end_time}
       @list_free_time_slots.push(last_free_time_slot)
     end
-    puts @list_free_time_slots
+    # puts @list_free_time_slots
   end
 
   def find_all_the_same_duration_time_slots(time_slot)
     duration = time_slot.end_time -  time_slot.start_time
     p duration
     @the_same_duration_timeslots = []
-    p 'freee all timeslot'
+    # p 'freee all timeslot'
     @list_free_time_slots.each do |item|
       if duration <= (item[:end_time] - item[:start_time])
         @the_same_duration_timeslots.push(item)
       end
     end
-    puts @the_same_duration_timeslots
+    # puts @the_same_duration_timeslots
   end
 
   def find_recommended_time_slots(time_slot)
@@ -112,6 +109,7 @@ class TimeSlotIntersectionValidator < ActiveModel::Validator
     if right_time_slots.length > 0
       @recommended_time_slots.push(right_time_slots[0])
     end
+    p @recommended_time_slots
   end
 
 end

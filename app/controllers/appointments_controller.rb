@@ -115,7 +115,7 @@ class AppointmentsController < ApplicationController
   def the_same_user?
     redirect_to '/welcome',
                 alert: "Permission denied" unless
-       current_user.id.to_s == Appointment.find_by_id(params[:id]).user_id.to_s
+      is_admin? || current_user.id.to_s == Appointment.find_by_id(params[:id]).user_id.to_s
   end
 end
 

@@ -7,34 +7,49 @@
 <% end %>
 
 
-<% if !logged_in? %>
-  <h2>Are there any health problems? We will help you!!!</h2>
-  <h3>You should log In to make an appointment !</h3>
-<%end%>
-
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="carousel-item active" data-interval="4000">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Our team</h5>
+        <h3>Our team</h3>
+        <br>
+        <% if !logged_in? %>
+          <h4>Are there any health problems? We will help you!!!</h4>
+          <h4>You should log In to make an appointment !</h4>
+        <%end%>
       </div>
       <img src="https://c4.wallpaperflare.com/wallpaper/416/1015/597/house-md-characters-wallpaper-preview.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-interval="4000">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Boss</h5>
+        <h3>Boss</h3>
+        <br>
+        <% if !logged_in? %>
+          <h4>Are there any health problems? We will help you!!!</h4>
+          <h4>You should log In to make an appointment !</h4>
+        <%end%>
       </div>
       <img src="https://miro.medium.com/max/3840/1*zCw9YQICYZzozYZsqeIiYA.png" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-interval="4000">
       <img src="https://images2.fanpop.com/images/photos/7900000/chase-cameron-forman-chameron-chase-and-cameron-7954028-1600-1063.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Daily meeting</h5>
+        <h3>Daily meeting</h3>
+        <br>
+        <% if !logged_in? %>
+          <h4>Are there any health problems? We will help you!!!</h4>
+          <h4>You should log In to make an appointment !</h4>
+        <%end%>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-interval="4000">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Our job</h5>
+        <h3>Our job</h3>
+        <br>
+        <% if !logged_in? %>
+          <h4>Are there any health problems? We will help you!!!</h4>
+          <h4>You should log In to make an appointment !</h4>
+        <%end%>
       </div>
       <img src="https://www.afterfiftyliving.com/wp-content/uploads/2019/03/dr-wronng.jpg" class="d-block w-100" alt="...">
     </div>
