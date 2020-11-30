@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
-  subject { described_class.new(name: "Anything",
-                                email: "Anything@gmail.com",
-                                password: "somepassword"
-                                )
-  }
+  subject { build(:user) }
 
   describe "validation of presence" do
+    let(:rand_user) { build(:random_user) }
+
     it "is valid with valid attributes" do
+      # p rand_user
       expect(subject).to be_valid
     end
 
@@ -30,10 +29,12 @@ RSpec.describe User, :type => :model do
   end
 
   describe 'uniques' do
-    before { described_class.create!(name: "Anything",
-                                     email: "Anything@gmail.com",
-                                     password: "somepassword") }
+    before(:example) do
+      previous_user = create(:user)
+    end
+
     it 'is invalid if the email is not unique' do
+      # create(:user)
       expect(subject).to be_invalid
     end
   end
